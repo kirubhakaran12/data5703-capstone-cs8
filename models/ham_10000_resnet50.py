@@ -4,7 +4,7 @@ def ham_10000_resnet50(CLASS_N=3):
     resnet_base = ResNet50(input_shape = (600,450,3), weights = 'imagenet', include_top = False, pooling = 'avg') 
     
     for layer in resnet_base.layers:
-        layer.trainable = True
+        layer.trainable = False
         
     x = Flatten()(resnet_base.layers[-1].output)
     x = Dense(512, activation = 'relu', kernel_regularizer = regularizers.l2(0.001))(x)#regulariser reduces overfitting
